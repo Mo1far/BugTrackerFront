@@ -6,7 +6,7 @@ export const Bug = ({bug}) => (
         <div className="card-text">
             <h2>Баг №{bug.id}</h2>
             <p>{bug.description}</p>
-            <span className="bug-status">{bug.status}</span>
+            <div className={bug.status}>{bug.status}</div>
         </div>
     </div>
 )
