@@ -33,14 +33,12 @@ code {
 .card {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 4fr 2fr 0.5fr;
+  grid-template-rows: 4.5fr 2fr 0.5fr;
   grid-template-areas: "image" "text" "stats";
 
-  border-radius: 18px;
   background: white;
-  box-shadow: 3px 3px 9px rgba(53, 53, 53, 0.5);
   font-family: roboto;
-  text-align: center;
+  border: none;
 
 
   transition: 0.5s ease;
@@ -51,19 +49,44 @@ code {
 .card-image {
   grid-area: image;
   background: url("img1.jpg");
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   background-size: cover;
+}
+
+.registered{
+  background-color: #3A83ED;
+  text-align: center;
+  padding: 8px;
+  color: white;
+}
+
+.pending{
+  background-color: #FFBA3F;
+  text-align: center;
+  color: white;
+}
+
+.dropped{
+  background-color: #F33F41;
+  text-align: center;
+  color: white;
+}
+
+.fixed{
+  background-color: #00A85B;
+  text-align: center;
+  color: white;
 }
 
 .card-text {
   grid-area: text;
-  margin: 25px;
+  margin-left: 0;
+  margin-top: 25px;
 }
 
 .card-text .date {
   color: rgb(255, 7, 110);
   font-size: 13px;
+  text-align: left;
 }
 
 .card-text p {
@@ -76,8 +99,9 @@ code {
 }
 
 .card-text h2 {
-  margin-top: 0px;
+  margin-top: 0;
   font-size: 28px;
+  justify-content: left;
 }
 
 .card-stats {
@@ -119,9 +143,9 @@ code {
   text-transform: uppercase;
 }
 
-.card:hover {
-  transform: scale(1.15);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+.card-image:hover {
+  transform: scale(1.25);
+  transition: 0.5s ease;
 }
 
 /*card2*/
