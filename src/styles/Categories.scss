@@ -89,3 +89,28 @@ ul.categories_list li input[type="checkbox"] {
   position: absolute;
   opacity: 0;
 }
+
+.registered{
+  background-color: #3A83ED;
+  text-align: center;
+  padding: 8px;
+  color: white;
+}
+
+.pending{
+  background-color: #FFBA3F;
+  text-align: center;
+  color: white;
+}
+
+.dropped{
+  background-color: #F33F41;
+  text-align: center;
+  color: white;
+}
+
+.fixed{
+  background-color: #00A85B;
+  text-align: center;
+  color: white;
+}
