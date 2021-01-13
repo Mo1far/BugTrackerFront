@@ -1,7 +1,8 @@
-import {ADD_BUGS, FETCH_BUGS, SHOW_LOADER} from "../types";
+import {ADD_BUGS, FETCH_BUGS, HIDE_LOADER, SHOW_LOADER} from "../types";
 
 const handlers = {
     [SHOW_LOADER]: state => ({...state, loading: true}),
+    [HIDE_LOADER]: state => ({...state, loading: false}),
     [ADD_BUGS]: (state, {payload}) => ({
         ...state,
         bugs: [...state.bugs, payload],

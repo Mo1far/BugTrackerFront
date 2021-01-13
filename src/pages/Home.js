@@ -21,7 +21,6 @@ export const Home = () => {
     return (
         <Fragment>
             <Categories categories={categories} toggleCategory={toggleCategory}/>
-            <hr/>
             <Bugs bugs={bugs}/>
             {
                 loading

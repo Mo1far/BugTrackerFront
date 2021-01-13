@@ -2,7 +2,7 @@ import React, {useReducer} from "react";
 import axios from "axios";
 import {ApiContext} from "./apiContext";
 import {apiReducer} from "./apiReducer";
-import {ADD_BUGS, FETCH_BUGS, SHOW_LOADER} from "../types";
+import {ADD_BUGS, FETCH_BUGS, HIDE_LOADER, SHOW_LOADER} from "../types";
 
 const url = process.env.REACT_APP_API_HOST
 
@@ -11,31 +11,38 @@ export const ApiState = ({children}) => {
         bugs: [],
         categories: ['pending', 'registered', 'fixed'],
         loading: false,
-        page: 1
+        page: 1,
+        hasNext: true
     }
     const [state, dispatch] = useReducer(apiReducer, initialState)
 
     const showLoader = () => dispatch({type: SHOW_LOADER})
+    const hideLoader = () => dispatch({type: HIDE_LOADER})
 
     const fetchBugs = async () => {
         showLoader()
         let categories = JSON.stringify(state.categories)
-        const res = await axios.get(`${url}/bugs?categories=${categories}&page=${state.page}&per_page=10`)
+        const res = await axios.get(`${url}/bugs?categories=${categories}&page=${state.page}&per_page=4`)
         const payload = res.data.data
 
         dispatch({type: FETCH_BUGS, payload})
     }
 
     const handleScroll = async () => {
+        if (state.hasNext !== true) return;
         if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
         console.log('Fetch more list items!');
         state.page++;
         showLoader()
         let categories = JSON.stringify(state.categories)
-        const res = await axios.get(`${url}/bugs?categories=${categories}&page=${state.page}&per_page=10`)
+        const res = await axios.get(`${url}/bugs?categories=${categories}&page=${state.page}&per_page=4`)
         const payload = state.bugs.concat(res.data.data)
-
-        dispatch({type: ADD_BUGS, payload})
+        if (payload.length === 0) {
+            state.hasNext = false
+            hideLoader()
+        }   else {
+            dispatch({type: ADD_BUGS, payload})
+        }
     }
 
     const toggleCategory = async (category) => {
@@ -44,6 +51,7 @@ export const ApiState = ({children}) => {
         } else {
             state.categories.push(category)
         }
+        state.hasNext = true
         await fetchBugs()
     }
 

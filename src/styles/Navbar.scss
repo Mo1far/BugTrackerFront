@@ -1,0 +1,30 @@
+.navbar {
+  display: flex;
+  justify-content: start;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px 0px, rgba(0, 0, 0, 0.08) 0px 4px 12px 0px;
+
+}
+
+
+.navbar_logo {
+  width: 65px;
+  height: 65px;
+  padding: 10px 10px;
+}
+
+.navbar_logo-imgLogo {
+  width: 100%;
+  height: 100%;
+}
+
+.nav_title {
+  display: flex;
+  align-items: center;
+}
+
+.nav_title-text {
+  text-align: center;
+  font-size: 30px;
+  color: #001F5A;
+}
