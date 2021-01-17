@@ -5,7 +5,7 @@ const handlers = {
     [HIDE_LOADER]: state => ({...state, loading: false}),
     [ADD_BUGS]: (state, {payload}) => ({
         ...state,
-        bugs: [...state.bugs, payload],
+        bugs: [...state.bugs, ...payload],
         loading: false
     }),
     [FETCH_BUGS]: (state, {payload}) => ({...state, bugs: payload, loading:false}),

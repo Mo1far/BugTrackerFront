@@ -3,6 +3,7 @@ import axios from "axios";
 import {ApiContext} from "./apiContext";
 import {apiReducer} from "./apiReducer";
 import {ADD_BUGS, FETCH_BUGS, HIDE_LOADER, SHOW_LOADER} from "../types";
+import {useContext} from "react/cjs/react.production.min";
 
 const url = process.env.REACT_APP_API_HOST
 
@@ -22,7 +23,7 @@ export const ApiState = ({children}) => {
     const fetchBugs = async () => {
         showLoader()
         let categories = JSON.stringify(state.categories)
-        const res = await axios.get(`${url}/bugs?categories=${categories}&page=${state.page}&per_page=4`)
+        const res = await axios.get(`${url}/bugs?categories=${categories}&page=${state.page}&per_page=8`)
         const payload = res.data.data
 
         dispatch({type: FETCH_BUGS, payload})
@@ -30,17 +31,17 @@ export const ApiState = ({children}) => {
 
     const handleScroll = async () => {
         if (state.hasNext !== true) return;
-        if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+        if ((window.innerHeight + document.documentElement.scrollTop) <= (document.documentElement.offsetHeight - 3)) return;
         console.log('Fetch more list items!');
         state.page++;
         showLoader()
-        let categories = JSON.stringify(state.categories)
-        const res = await axios.get(`${url}/bugs?categories=${categories}&page=${state.page}&per_page=4`)
+        let categoriesJ = JSON.stringify(state.categories)
+        const res = await axios.get(`${url}/bugs?categories=${categoriesJ}&page=${state.page}&per_page=4`)
         const payload = state.bugs.concat(res.data.data)
         if (payload.length === 0) {
-            state.hasNext = false
+            state.hasNext = false;
             hideLoader()
-        }   else {
+        } else {
             dispatch({type: ADD_BUGS, payload})
         }
     }
@@ -51,7 +52,7 @@ export const ApiState = ({children}) => {
         } else {
             state.categories.push(category)
         }
-        state.hasNext = true
+        state.hasNext = true;
         await fetchBugs()
     }
 

@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Categories.scss"
 
 export const Categories = ({categories, toggleCategory}) => {
-    const allCategories = ['pending', 'registered', 'fixed', 'dropped']
+    // const allCategories = ['pending', 'registered', 'fixed', 'dropped']
     return (
         <div className="categories">
             <div className="categories_block">
