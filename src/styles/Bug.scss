@@ -1,73 +1,94 @@
+p {
+  margin: 0;
+}
+
 .card {
-  display: grid;
-  grid-auto-columns: 240px;
-  grid-template-rows: repeat(auto-fill, minmax(auto, auto));
-  grid-template-areas: "image" "text";
-
-
-  background: white;
-  font-family: roboto, serif;
-  border: none;
-
-
-  transition: 0.5s ease;
-  cursor: pointer;
-
-  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
 }
 
-.card:hover {
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px 0px, rgba(0, 0, 0, 0.08) 0px 4px 12px 0px;
-  transform: scale(1.1);
-}
-
-.card-image {
-  grid-area: image;
-
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-
+.card__image {
   width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
 }
 
-.card_image img {
-  width: 100%;
+.card__content {
+  line-height: 1.5;
+  font-size: 0.9em;
+  padding-top: 15px;
 }
 
-.card-text {
-  grid-area: text;
-  margin-left: 0;
-  margin-top: 15px;
+.card__content_id {
+  color: #555555;
 }
 
-
-.card-text h2 {
-  margin-top: 0;
-  font-size: 28px;
-  text-align: left;
-}
-
-.card-text p {
-  font-size: 20px;
-}
-
-.card-status {
-  text-align: center;
-  padding: 8px;
-  color: white;
-  font-size: 20px;
+.card__content_location {
+  padding-top: 0.2em;
+  font-size: 1.3em;
   font-weight: 900;
+}
+
+.card__content_description {
+  padding-top: 0.4em;
+  padding-bottom: 1em;
+
+  font-size: 1.2em;
+  color: rgba(1,1,1,0.8);
+  font-weight: 500;
+}
+
+.card__content > p:first-of-type {
+  margin-top: 0;
+}
+
+.card__content > p:last-of-type {
+  margin-bottom: 0;
+}
+
+.card__status {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #555555;
+  background: #eeeeee;
+  font-size: 0.8em;
+  margin-top: auto;
+}
+
+.card__status i {
+  font-size: 0.9em;
+  margin-right: 8px;
+}
+
+.card__link {
+  color: #64968c;
+  text-decoration: none;
+}
+
+.card__link:hover {
+  text-decoration: underline;
+}
+
+.card__status {
+  text-align: center;
+  //padding: 8px;
+  color: white;
+  font-size: 1em;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
 }
 
 .registered {
   background-color: #3A83ED;
-
 }
 
 .pending {
   background-color: #FFBA3F;
-
 }
 
 .dropped {
@@ -76,5 +97,4 @@
 
 .fixed {
   background-color: #00A85B;
-
 }
