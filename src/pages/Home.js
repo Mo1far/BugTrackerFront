@@ -1,32 +1,33 @@
-import React, {Fragment, useContext, useEffect} from "react";
-import {Bugs} from "../components/Bugs";
-import {ApiContext} from "../context/api/apiContext";
-import {Loader} from "../components/Loader";
-import {Categories} from "../components/Categories";
+import React, { Fragment, useContext, useEffect } from "react";
+import { Bugs } from "../components/Bugs";
+import { ApiContext } from "../context/api/apiContext";
+import { Loader } from "../components/Loader";
+import { Categories } from "../components/Categories";
 
 export const Home = () => {
-    const {loading, bugs, categories, fetchBugs, toggleCategory, handleScroll} = useContext(ApiContext)
+  const {
+    loading,
+    bugs,
+    categories,
+    fetchBugs,
+    toggleCategory,
+    handleScroll,
+  } = useContext(ApiContext);
 
-    useEffect(() => {
-        fetchBugs()
-        // window.addEventListener('scroll', handleScroll);
-        // return () => window.removeEventListener('scroll', handleScroll);
-    }, [])
+  useEffect(() => {
+    fetchBugs();
+  }, []);
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", (event) => handleScroll(event));
+  }, []);
 
-    return (
-        <Fragment>
-            <Categories categories={categories} toggleCategory={toggleCategory}/>
-            <Bugs bugs={bugs}/>
-            {
-                loading
-                    ? <Loader/>
-                    : ''
-            }
-        </Fragment>
-    )
+  return (
+    <Fragment>
+      <Categories categories={categories} toggleCategory={toggleCategory} />
+      <Bugs bugs={bugs} />
+      {loading ? <Loader /> : null}
+    </Fragment>
+  );
 }
