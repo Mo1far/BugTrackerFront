@@ -6,6 +6,13 @@ p {
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
+  transition: all .5s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.07);
+  cursor:pointer;
+
 }
 
 .card__image {
