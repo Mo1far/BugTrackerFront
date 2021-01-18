@@ -24,7 +24,7 @@ export const ApiState = ({ children }) => {
     showLoader();
     let categories = JSON.stringify(state.categories);
     const res = await axios.get(
-      `${url}/bugs?categories=${categories}&page=${state.page}&per_page=8`
+      `${url}/bugs?categories=${categories}&page=${state.page}&per_page=100`
     );
     const payload = res.data.data;
 
