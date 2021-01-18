@@ -31,4 +31,4 @@ export const Home = () => {
       {loading ? <Loader /> : null}
     </Fragment>
   );
-};
+}

@@ -31,28 +31,28 @@ export const ApiState = ({ children }) => {
     dispatch({ type: FETCH_BUGS, payload });
   };
 
-  const handleScroll = async () => {
-    if (state.hasNext !== true) return;
-    if (
-      window.innerHeight + document.documentElement.scrollTop <=
-      document.documentElement.offsetHeight - 3
-    )
-      return;
-    console.log("Fetch more list items!");
-    state.page++;
-    showLoader();
-    let categoriesJ = JSON.stringify(state.categories);
-    const res = await axios.get(
-      `${url}/bugs?categories=${categoriesJ}&page=${state.page}&per_page=4`
-    );
-    const payload = state.bugs.concat(res.data.data);
-    if (payload.length === 0) {
-      state.hasNext = false;
-      hideLoader();
-    } else {
-      dispatch({ type: ADD_BUGS, payload });
-    }
-  };
+  // const handleScroll = async (categories) => {
+  //   if (state.hasNext !== true) return;
+  //   if (
+  //     window.innerHeight + document.documentElement.scrollTop <=
+  //     document.documentElement.offsetHeight - 3
+  //   )
+  //     return;
+  //   console.log("Fetch more list items!");
+  //   state.page++;
+  //   showLoader();
+  //   let categoriesJ = JSON.stringify(state.categories);
+  //   const res = await axios.get(
+  //     `${url}/bugs?categories=${categoriesJ}&page=${state.page}&per_page=4`
+  //   );
+  //   const payload = state.bugs.concat(res.data.data);
+  //   if (payload.length === 0) {
+  //     state.hasNext = false;
+  //     hideLoader();
+  //   } else {
+  //     dispatch({ type: ADD_BUGS, payload });
+  //   }
+  // };
 
   const toggleCategory = async (category) => {
     if (state.categories.includes(category)) {
@@ -70,7 +70,7 @@ export const ApiState = ({ children }) => {
         showLoader,
         fetchBugs,
         toggleCategory,
-        handleScroll,
+        // handleScroll,
         loading: state.loading,
         bugs: state.bugs,
         categories: state.categories,
